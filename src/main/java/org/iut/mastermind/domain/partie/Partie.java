@@ -48,12 +48,13 @@ public class Partie {
     public Reponse tourDeJeu(String motPropose) {
 
         this.nbEssais++;
-        MotSecret motSecret = new MotSecret(this.motADeviner);
-        Reponse reponse = motSecret.compareProposition(motPropose);
-        if (reponse.lettresToutesPlacees()){
+        Reponse reponse = new MotSecret(this.motADeviner).compareProposition(motPropose);
+
+        if (reponse.lettresToutesPlacees()) {
             done();
+        } else {
+            this.verifieNbEssais();
         }
-        this.verifieNbEssais();
 
         return reponse;
     }
